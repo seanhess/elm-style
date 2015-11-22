@@ -13,6 +13,11 @@ Idiomatic way to describe styles in Elm.
    ```bash
    cd elm-style/
    ```
+
+3. Install the npm packages
+   ```bash
+   npm install
+   ```
    
 3. Start gulp to get a live reloading dev server. It should open [localhost](http://localhost:3000).
    ```bash
