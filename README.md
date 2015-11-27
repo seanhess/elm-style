@@ -19,7 +19,7 @@ Idiomatic way to describe styles in Elm.
    npm install
    ```
    
-3. Start gulp to get a live reloading dev server. It should open [localhost](http://localhost:3000).
+. Start gulp to get a live reloading dev server. It should open [localhost](http://localhost:3000).
    ```bash
    gulp
    ```
@@ -27,6 +27,8 @@ Idiomatic way to describe styles in Elm.
 Inspired by [React: CSS in JS](https://speakerdeck.com/vjeux/react-css-in-js) by vjeux
 
 Thanks to [Gizra](https://github.com/Gizra/generator-elmlang) for making an awesome elm generator for [Yeoman](http://yeoman.io/).
+
+Make sure to take a look at some alternatives as well before deciding on how best to tackle styles in Elm as this is still a very volatile and quickly changing landscape. One I recommend looking at is [elm-stylesheets](https://github.com/rtfeldman/elm-stylesheets) by the well known [Richard Feldman](https://github.com/rtfeldman).
 
 
 ## Features

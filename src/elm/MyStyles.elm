@@ -54,7 +54,7 @@ container =
 top : Styles 
 top =
   let
-    bgColor = color' (hsl (193 * pi / 180) 0.51 0.59)
+    bgColor = color' (hsl (193 * pi / 180) 1 0.53)
 
   in
     List.concat
