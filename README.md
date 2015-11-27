@@ -19,7 +19,7 @@ Idiomatic way to describe styles in Elm.
    npm install
    ```
    
-. Start gulp to get a live reloading dev server. It should open [localhost](http://localhost:3000).
+4. Start gulp to get a live reloading dev server. It should open [localhost](http://localhost:3000).
    ```bash
    gulp
    ```
