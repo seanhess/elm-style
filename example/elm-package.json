@@ -1,10 +1,11 @@
 {
-    "version": "1.0.0",
-    "summary": "Idiomatic way to describe styles in Elm",
-    "repository": "https://github.com/adam-r-kowalski/elm-style.git",
+    "version": "1.1.0",
+    "summary": "Example for elm-styles",
+    "repository": "https://github.com/seanhess/elm-style.git",
     "license": "BSD3",
     "source-directories": [
-        "src"
+        ".",
+        "../src"
     ],
     "exposed-modules": [],
     "dependencies": {

@@ -1,8 +1,10 @@
-module Style where
+-- Taken from https://github.com/adam-r-kowalski/elm-style
+-- which hasn't been submitted as an elm package
 
+
+module Style (..) where
 
 -- NATIVE IMPORTS
-
 
 import Color exposing (Color, toRgb)
 import String
@@ -10,11 +12,12 @@ import String
 
 -- THIRD PARTY IMPORTS
 
-
 import Vendor
 
 
-type alias Style = (String, String)
+type alias Style =
+  ( String, String )
+
 
 
 -- COMMON VALUES
@@ -54,7 +57,7 @@ inlineBlock : String
 inlineBlock =
   "inline-block"
 
-  
+
 flex' : String
 flex' =
   "flex"
@@ -73,7 +76,7 @@ listItem =
 runIn : String
 runIn =
   "run-in"
-        
+
 
 table : String
 table =
@@ -285,17 +288,30 @@ dimensions f xs =
 color' : Color -> String
 color' c =
   let
-    { red, green, blue, alpha } = toRgb c
-    r = toString red
-    g = toString green
-    b = toString blue
-    a = toString alpha
+    { red, green, blue, alpha } =
+      toRgb c
 
+    r =
+      toString red
+
+    g =
+      toString green
+
+    b =
+      toString blue
+
+    a =
+      toString alpha
   in
-    "rgba( " ++ r ++ ", "
-             ++ g ++ ", "
-             ++ b ++ ", "
-             ++ a ++ " )"
+    "rgba( "
+      ++ r
+      ++ ", "
+      ++ g
+      ++ ", "
+      ++ b
+      ++ ", "
+      ++ a
+      ++ " )"
 
 
 repeat : String
@@ -449,7 +465,7 @@ help =
 
 
 move : String
-move = 
+move =
   "move"
 
 
@@ -561,18 +577,20 @@ zoomOut =
 linearGradient : number -> List Color -> String
 linearGradient radians colors =
   let
-    colorString = String.join "," (List.map color' colors)
-    radString = (rad radians) ++ ", "
+    colorString =
+      String.join "," (List.map color' colors)
 
+    radString =
+      (rad radians) ++ ", "
   in
-    "linear-gradient( " ++ radString ++ colorString ++ " )" 
+    "linear-gradient( " ++ radString ++ colorString ++ " )"
 
 
 radialGradient : List Color -> String
 radialGradient colors =
   let
-    colorString = String.join "," (List.map color' colors)
-
+    colorString =
+      String.join "," (List.map color' colors)
   in
     "radial-gradient( " ++ colorString ++ " )"
 
@@ -740,7 +758,7 @@ preLine =
 preWrap : String
 preWrap =
   "pre-wrap"
-           
+
 
 
 -- PREFIX
@@ -752,18 +770,18 @@ type alias PrefixSet =
   , o : String
   , webkit : String
   , default : String
-  }                    
+  }
 
 
 prefixSet : String -> PrefixSet
 prefixSet default =
-  { ms = default 
+  { ms = default
   , moz = default
   , o = default
   , webkit = default
   , default = default
   }
-                     
+
 
 prefixName : PrefixSet -> String -> Style
 prefixName prefix value =
@@ -803,15 +821,20 @@ prefixValue prefix =
       prefix.default
 
 
+
 -- BACKGROUND
 
 
 background : String -> Style
 background b =
   let
-    needsPrefix = String.startsWith "linear-gradient" b ||
-                  String.startsWith "radial-gradient" b
-    value = prefixSet b
+    needsPrefix =
+      String.startsWith "linear-gradient" b
+        || String.startsWith "radial-gradient" b
+
+    value =
+      prefixSet b
+
     value' =
       if needsPrefix then
         { value
@@ -822,9 +845,8 @@ background b =
         }
       else
         value
-
   in
-    ( "background", prefixValue value')
+    ( "background", prefixValue value' )
 
 
 backgroundColor : String -> Style
@@ -855,6 +877,7 @@ backgroundRepeat b =
 backgroundAttachment : String -> Style
 backgroundAttachment b =
   ( "background-attachment", b )
+
 
 
 -- BORDER
@@ -965,13 +988,16 @@ borderTopRadius b =
   ( "border-top-radius", b )
 
 
+
 -- CURSOR
 
 
 cursor : String -> Style
 cursor c =
   let
-    value = prefixSet c
+    value =
+      prefixSet c
+
     value' =
       if c == "grab" then
         { value | webkit = "-webkit-grab" }
@@ -979,13 +1005,14 @@ cursor c =
         { value | webkit = "-webkit-zoom-in" }
       else if c == "zoom-out" then
         { value | webkit = "-webkit-zoom-out" }
-      else value
-
+      else
+        value
   in
     ( "cursor", prefixValue value' )
 
 
--- DIMENSIONS 
+
+-- DIMENSIONS
 
 
 height : String -> Style
@@ -1018,28 +1045,32 @@ minWidth m =
   ( "min-width", m )
 
 
+
 -- DISPLAY
 
 
 display : String -> Style
 display d =
   let
-    value = prefixSet d
+    value =
+      prefixSet d
+
     value' =
       if d == "flex" then
         { value
-            | webkit = "-webkit-flex"
-            , ms = "-ms-flexbox"
+          | webkit = "-webkit-flex"
+          , ms = "-ms-flexbox"
         }
       else if d == "inline-flex" then
         { value
-            | webkit = "-webkit-inline-flex"
-            , ms = "-ms-inline-flexbox"
+          | webkit = "-webkit-inline-flex"
+          , ms = "-ms-inline-flexbox"
         }
-      else value
-
+      else
+        value
   in
     ( "display", prefixValue value' )
+
 
 
 -- FLEX
@@ -1048,11 +1079,11 @@ display d =
 flexDirection : String -> Style
 flexDirection f =
   let
-    name = prefixSet "flex-direction"
-  
+    name =
+      prefixSet "flex-direction"
   in
     prefixName
-      { name 
+      { name
         | ms = "-ms-flex-direction"
         , webkit = "-webkit-flex-direction"
       }
@@ -1062,18 +1093,24 @@ flexDirection f =
 flexWrap : String -> Style
 flexWrap f =
   let
-    name = prefixSet "flex-wrap"
-
+    name =
+      prefixSet "flex-wrap"
   in
     prefixName
-      { name 
+      { name
         | ms = "-ms-flex-wrap"
         , webkit = "-webkit-flex-wrap"
       }
       f
-  
 
-flexFlow : String -> Style -- double check
+
+flexFlow : String -> Style
+
+
+
+-- double check
+
+
 flexFlow f =
   ( "flex-flow", f )
 
@@ -1081,34 +1118,48 @@ flexFlow f =
 justifyContent : String -> Style
 justifyContent j =
   let
-    name = prefixSet "justify-content"
-    value = prefixSet j
-    value' =
-      if j == "flex-start" then { value | ms = "start" }
-      else if j == "flex-end" then { value | ms = "end" }
-      else if j == "space-between" then { value | ms = "justify" }
-      else if j == "space-around" then { value | ms = "distribute" }
-      else value
+    name =
+      prefixSet "justify-content"
 
+    value =
+      prefixSet j
+
+    value' =
+      if j == "flex-start" then
+        { value | ms = "start" }
+      else if j == "flex-end" then
+        { value | ms = "end" }
+      else if j == "space-between" then
+        { value | ms = "justify" }
+      else if j == "space-around" then
+        { value | ms = "distribute" }
+      else
+        value
   in
     prefixName
-      { name 
+      { name
         | ms = "-ms-flex-pack"
         , webkit = "-webkit-justify-content"
       }
       <| prefixValue value'
-              
+
 
 alignItems : String -> Style
 alignItems a =
   let
-    name = prefixSet "align-items"
-    value = prefixSet a
-    value' =
-      if a == "flex-start" then { value | ms = "start" }
-      else if a == "flex-end" then { value | ms = "end" }
-      else value
+    name =
+      prefixSet "align-items"
 
+    value =
+      prefixSet a
+
+    value' =
+      if a == "flex-start" then
+        { value | ms = "start" }
+      else if a == "flex-end" then
+        { value | ms = "end" }
+      else
+        value
   in
     prefixName
       { name
@@ -1121,15 +1172,23 @@ alignItems a =
 alignContent : String -> Style
 alignContent a =
   let
-    name = prefixSet "align-content"
-    value = prefixSet a
-    value' =
-      if a == "flex-start" then { value | ms = "start" }
-      else if a == "flex-end" then { value | ms = "end" }
-      else if a == "space-between" then { value | ms = "justify" }
-      else if a == "space-around" then { value | ms = "distribute" }
-      else value
+    name =
+      prefixSet "align-content"
 
+    value =
+      prefixSet a
+
+    value' =
+      if a == "flex-start" then
+        { value | ms = "start" }
+      else if a == "flex-end" then
+        { value | ms = "end" }
+      else if a == "space-between" then
+        { value | ms = "justify" }
+      else if a == "space-around" then
+        { value | ms = "distribute" }
+      else
+        value
   in
     prefixName
       { name
@@ -1142,8 +1201,8 @@ alignContent a =
 order : String -> Style
 order o =
   let
-    name = prefixSet "order"
-
+    name =
+      prefixSet "order"
   in
     prefixName
       { name
@@ -1156,8 +1215,8 @@ order o =
 flexGrow : String -> Style
 flexGrow f =
   let
-    name = prefixSet "flex-grow"
-
+    name =
+      prefixSet "flex-grow"
   in
     prefixName
       { name
@@ -1170,8 +1229,8 @@ flexGrow f =
 flexShrink : String -> Style
 flexShrink f =
   let
-    name = prefixSet "flex-shrink"
-
+    name =
+      prefixSet "flex-shrink"
   in
     prefixName
       { name
@@ -1184,8 +1243,8 @@ flexShrink f =
 flexBasis : String -> Style
 flexBasis f =
   let
-    name = prefixSet "flex-basis"
-
+    name =
+      prefixSet "flex-basis"
   in
     prefixName
       { name
@@ -1198,13 +1257,19 @@ flexBasis f =
 alignSelf : String -> Style
 alignSelf a =
   let
-    name = prefixSet "align-self"
-    value = prefixSet a
-    value' =
-      if a == "flex-start" then { value | ms = "start" }
-      else if a == "flex-end" then { value | ms = "end" }
-      else value
+    name =
+      prefixSet "align-self"
 
+    value =
+      prefixSet a
+
+    value' =
+      if a == "flex-start" then
+        { value | ms = "start" }
+      else if a == "flex-end" then
+        { value | ms = "end" }
+      else
+        value
   in
     prefixName
       { name
@@ -1217,8 +1282,8 @@ alignSelf a =
 flex : String -> Style
 flex f =
   let
-    name = prefixSet "flex"
-
+    name =
+      prefixSet "flex"
   in
     prefixName
       { name
@@ -1226,6 +1291,7 @@ flex f =
         , webkit = "-webkit-flex"
       }
       f
+
 
 
 -- FLOAT
@@ -1239,6 +1305,7 @@ clear c =
 float : String -> Style
 float f =
   ( "float", f )
+
 
 
 -- FONT
@@ -1269,6 +1336,7 @@ fontWeight f =
   ( "font-weight", f )
 
 
+
 -- LIST STYLE
 
 
@@ -1285,6 +1353,7 @@ listStylePosition l =
 listStyleType : String -> Style
 listStyleType l =
   ( "list-style-type", l )
+
 
 
 -- MARGIN
@@ -1313,6 +1382,7 @@ marginRight m =
 marginTop : String -> Style
 marginTop m =
   ( "margin-top", m )
+
 
 
 -- OUTLINE
@@ -1367,6 +1437,7 @@ paddingTop p =
   ( "padding-top", p )
 
 
+
 -- POSITION
 
 
@@ -1410,6 +1481,7 @@ zIndex z =
   ( "z-index", z )
 
 
+
 -- SHADOW
 
 
@@ -1421,6 +1493,7 @@ boxShadow b =
 textShadow : String -> Style
 textShadow t =
   ( "text-shadow", t )
+
 
 
 -- TEXT
@@ -1476,14 +1549,15 @@ wordSpacing w =
   ( "word-spacing", w )
 
 
+
 -- TRANSFORM
 
 
 transform : String -> Style
 transform t =
   let
-    name = prefixSet "transform"
-
+    name =
+      prefixSet "transform"
   in
     prefixName
       { name
