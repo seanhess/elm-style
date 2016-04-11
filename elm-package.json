@@ -1,6 +1,6 @@
 {
-    "version": "1.0.0",
-    "summary": "Idiomatic way to describe styles in Elm",
+    "version": "1.1.0",
+    "summary": "Composable styles in Elm",
     "repository": "https://github.com/adam-r-kowalski/elm-style.git",
     "license": "BSD3",
     "source-directories": [
