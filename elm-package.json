@@ -1,7 +1,7 @@
 {
     "version": "1.1.0",
     "summary": "Composable styles in Elm",
-    "repository": "https://github.com/adam-r-kowalski/elm-style.git",
+    "repository": "https://github.com/seanhess/elm-style.git",
     "license": "BSD3",
     "source-directories": [
         "src"
