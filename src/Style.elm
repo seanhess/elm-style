@@ -1,4 +1,4 @@
-module Style (..) where
+module Style exposing (..)
 
 
 {-| Functions to combine and compose for reusable inline styles

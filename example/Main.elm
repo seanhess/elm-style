@@ -1,11 +1,10 @@
-module Main where
+module Main exposing (..)
 
 
--- THIRD PARTY IMPORTS 
+-- THIRD PARTY IMPORTS
 
 
 import Html exposing (..)
-import Html.Events exposing (..)
 import Html.Attributes exposing (style)
 
 
@@ -26,7 +25,7 @@ type alias Model =
   , callToAction : String
   }
 
-                 
+
 initialModel : Model
 initialModel =
   { header = [ "examples", "docs", "community", "blog" ]
@@ -34,48 +33,48 @@ initialModel =
   , description = "the best of functional programming in your browser"
   , subDescription = "writing great code should be easy ... now it is"
   , callToAction = "try or install"
-  }                
+  }
 
 
 -- VIEW
 
 
-header : Model -> Html
+header : Model -> Html msg
 header model =
   div
   [ style MyStyles.header ]
   (List.map (\x -> div [] [ text x ]) model.header)
 
 
-title : Model -> Html
+title : Model -> Html msg
 title model =
   div
   [ style MyStyles.title ]
   [ text model.title ]
 
 
-description : Model -> Html
+description : Model -> Html msg
 description model =
   div
   [ style MyStyles.description ]
   [ text model.description ]
 
 
-subDescription : Model -> Html
+subDescription : Model -> Html msg
 subDescription model =
   div
   [ style MyStyles.subDescription ]
   [ text model.subDescription ]
 
 
-callToAction : Model -> Html
+callToAction : Model -> Html msg
 callToAction model =
   div
   [ style MyStyles.callToAction ]
   [ text model.callToAction ]
-  
-  
-view : Model -> Html
+
+
+view : Model -> Html msg
 view model =
   div
   [ style MyStyles.container ]
@@ -95,8 +94,8 @@ view model =
 
 
 -- WIRING
-          
 
-main : Html 
+
+main : Html msg
 main =
   view initialModel
