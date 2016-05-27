@@ -1,4 +1,4 @@
-module MyStyles where
+module MyStyles exposing (..)
 
 
 -- NATIVE IMPORTS
@@ -38,7 +38,7 @@ centerLayout =
   ]
 
 
-container : Styles 
+container : Styles
 container =
   List.concat
         [ columnLayout
@@ -48,10 +48,10 @@ container =
           , fontFamily "sans-serif"
           ]
         ]
-  
 
 
-top : Styles 
+
+top : Styles
 top =
   let
     bgColor = color' (hsl (193 * pi / 180) 1 0.53)
@@ -63,7 +63,7 @@ top =
              , backgroundColor bgColor
              ]
           ]
-  
+
 
 
 header : Styles
@@ -78,7 +78,7 @@ header =
   ]
 
 
-title : Styles 
+title : Styles
 title =
   List.concat
       [ centerLayout
@@ -87,7 +87,7 @@ title =
         , flex (toString 1)
         ]
       ]
-  
+
 
 
 description : Styles
@@ -99,7 +99,7 @@ description =
         , marginBottom (px 10)
         ]
       ]
-  
+
 
 subDescription : Styles
 subDescription =
