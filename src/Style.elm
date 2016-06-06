@@ -31,7 +31,7 @@ module Style exposing (..)
 @docs position, bottom, left, right, top, clip, overflow, zIndex, absolute, relative, static, inline, block, scroll
 
 # Align
-@docs verticalAlign, baseline, center, textAlign, left', right'
+@docs verticalAlign, baseline, center, middle, stretch, textAlign, left', right'
 
 # Flex
 @docs flex, flexDirection, flexWrap, flexFlow, justifyContent, alignItems, alignContent, order, flexGrow, flexShrink, flexBasis, alignSelf, column, columnReverse, flexEnd, flexStart, justify, row, rowReverse, spaceAround, spaceBetween, wrap, wrapReverse
@@ -222,6 +222,18 @@ baseline =
 center : String
 center =
   "center"
+
+
+{-| middle -}
+middle : String
+middle =
+  "middle"
+
+
+{-| stretch -}
+stretch : String
+stretch =
+  "stretch"
 
 
 {-| flex-start -}
