@@ -18,7 +18,7 @@ import Html.Attributes exposing (style)
 
 
 import Style exposing (..)
-
+import Style.Dynamic exposing (..)
 
 type alias Styles = List ( String, String )
 
@@ -88,7 +88,9 @@ title =
         ]
       ]
 
-
+interactiveTitle : List (Html.Attribute msg)
+interactiveTitle =
+  dynamicEffect [hover] title [dS fontSize (px 100) [px 150]]
 
 description : Styles
 description =
@@ -121,6 +123,13 @@ callToAction =
         , marginBottom (px 40)
         ]
       ]
+
+interactiveCallToAction : List (Html.Attribute msg)
+interactiveCallToAction =
+    dynamicEffect [hover,pressure] callToAction
+    [dS color (color' white) [(color' red), (color' black)],
+     dS fontSize (px 24) [(px 32), (px 32)]]
+
 
 
 bottom : Styles
