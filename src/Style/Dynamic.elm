@@ -1,8 +1,9 @@
-module Style.Dynamic exposing (InterEvent, Effect, DynamicStyle, dS, dynamicEffect, hover, pressure)
+module Style.Dynamic exposing ( InterEvent, Effect, DynamicStyle, dS, dynamicEffect, hover, pressure )
+
 
 {-| Extension for the Style library to add dynamic effects 
 
-# Types
+# Dynamics
 @docs DynamicStyle, InterEvent, Effect
 
 # Functions
@@ -10,7 +11,6 @@ module Style.Dynamic exposing (InterEvent, Effect, DynamicStyle, dS, dynamicEffe
 
 # Effects
 @docs hover, pressure
-
 -}
 
 import Html exposing (Attribute)
@@ -19,18 +19,20 @@ import String
 import List
 import Style exposing (..)
 
-
 {-| Alias for inline dynamic styles
 
-    myDynamicStyle : DynamicStyl
+    myDynamicStyle : DynamicStyle
     myDynamicStyle = 
         (offStyle, [onStyle1, onStyle2])
 -}
 type alias DynamicStyle = (Style, List Style)
 
-{-| JS interactive event -}
+{-| JS interactive event
+    
+    myEvent : InterEvent
+    myEvent = "onmouseover"
+-}
 type alias InterEvent = String
-
 
 {-| A tuple of event lists to turn the effect on and off
     
@@ -96,10 +98,12 @@ dynamicEffect effects staticParameters dynamicParameters =
     in 
         [style startingParameters] ++ List.map2 eventReactor activeParameters switchOn  ++ List.map (eventReactor inactiveParameters) switchOff     
 
-{-| hover -}
+{-| hover
+-}
 hover : Effect
 hover = (["onmouseout"], ["onmouseover"])
 
-{-| presure -}
+{-| presure
+-}
 pressure : Effect
 pressure = (["onmouseup", "onmouseout"], ["onmousedown"])
