@@ -25,14 +25,14 @@ type alias Styles = List ( String, String )
 
 columnLayout : Styles
 columnLayout =
-  [ display flex'
+  [ display flex_
   , flexDirection column
   ]
 
 
 centerLayout : Styles
 centerLayout =
-  [ display flex'
+  [ display flex_
   , justifyContent center
   , alignItems center
   ]
@@ -54,7 +54,7 @@ container =
 top : Styles
 top =
   let
-    bgColor = color' (hsl (193 * pi / 180) 1 0.53)
+    bgColor = color_ (hsl (193 * pi / 180) 1 0.53)
 
   in
     List.concat
@@ -68,11 +68,11 @@ top =
 
 header : Styles
 header =
-  [ display flex'
+  [ display flex_
   , justifyContent spaceAround
   , margin <| (px 20) ++ " " ++ auto
   , fontSize (px 20)
-  , color <| color' (hsl (202 * pi / 180) 0.24 0.27)
+  , color <| color_ (hsl (202 * pi / 180) 0.24 0.27)
   , width (pc 100)
   , maxWidth (px 700)
   ]
@@ -83,7 +83,7 @@ title =
   List.concat
       [ centerLayout
       , [ fontSize (px 100)
-        , color (color' white)
+        , color (color_ white)
         , flex (toString 1)
         ]
       ]
@@ -95,7 +95,7 @@ description =
   List.concat
       [ centerLayout
       , [ fontSize (px 24)
-        , color (color' white)
+        , color (color_ white)
         , marginBottom (px 10)
         ]
       ]
@@ -106,7 +106,7 @@ subDescription =
   List.concat
       [ centerLayout
       , [ fontSize (px 16)
-        , color (color' white)
+        , color (color_ white)
         , marginBottom (px 40)
         ]
       ]
@@ -117,7 +117,7 @@ callToAction =
   List.concat
       [ centerLayout
       , [ fontSize (px 24)
-        , color (color' white)
+        , color (color_ white)
         , marginBottom (px 40)
         ]
       ]
@@ -126,5 +126,5 @@ callToAction =
 bottom : Styles
 bottom =
   [ flex (toString 1)
-  , backgroundColor (color' white)
+  , backgroundColor (color_ white)
   ]
