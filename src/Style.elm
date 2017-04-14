@@ -10,7 +10,7 @@ module Style exposing (..)
 @docs background, backgroundColor, backgroundImage, backgroundPosition, backgroundSize, backgroundRepeat, backgroundAttachment, linearGradient, radialGradient, noRepeat, repeat, repeatX, repeatY
 
 # Values
-@docs px, pc, em, color', deg, rad, url
+@docs px, pc, em, color_, deg, rad, url
 
 # Border
 @docs border, borderColor, borderBottomColor, borderLeftColor, borderRightColor, borderTopColor, borderStyle, borderBottomStyle, borderLeftStyle, borderRightStyle, borderTopStyle, borderWidth, borderBottomWidth, borderLeftWidth, borderRightWidth, borderTopWidth, borderRadius, borderBottomRadius, borderLeftRadius, borderRightRadius, borderTopRadius, dashed, dotted, double, groove, ridge, solid
@@ -25,19 +25,19 @@ module Style exposing (..)
 @docs height, width, maxHeight, maxWidth, minHeight, minWidth, dimensions
 
 # Display
-@docs display, block, inlineBlock, table, tableCell, fixed, flex', inlineTable, runIn, hidden, visible, inlineFlex, listItem, tableCaption, tableColumn, tableColumnGroup, tableFooterGroup, tableHeaderGroup, tableRow, tableRowGroup
+@docs display, block, inlineBlock, table, tableCell, fixed, flex_, inlineTable, runIn, hidden, visible, inlineFlex, listItem, tableCaption, tableColumn, tableColumnGroup, tableFooterGroup, tableHeaderGroup, tableRow, tableRowGroup
 
 # Positioning
 @docs position, bottom, left, right, top, clip, overflow, zIndex, absolute, relative, static, inline, block, scroll
 
 # Align
-@docs verticalAlign, baseline, center, middle, stretch, textAlign, left', right'
+@docs verticalAlign, baseline, center, middle, stretch, textAlign, left_, right_
 
 # Flex
 @docs flex, flexDirection, flexWrap, flexFlow, justifyContent, alignItems, alignContent, order, flexGrow, flexShrink, flexBasis, alignSelf, column, columnReverse, flexEnd, flexStart, justify, row, rowReverse, spaceAround, spaceBetween, wrap, wrapReverse
 
 # Float
-@docs float, clear, both, left', right'
+@docs float, clear, both, left_, right_
 
 # Margin
 @docs margin, marginBottom, marginTop, marginLeft, marginRight
@@ -129,8 +129,8 @@ inlineBlock =
 
 
 {-| flex -}
-flex' : String
-flex' =
+flex_ : String
+flex_ =
   "flex"
 
 
@@ -308,15 +308,15 @@ none =
   "none"
 
 
-{-| left' -}
-left' : String
-left' =
+{-| left_ -}
+left_ : String
+left_ =
   "left"
 
 
-{-| right' -}
-right' : String
-right' =
+{-| right_ -}
+right_ : String
+right_ =
   "right"
 
 
@@ -403,9 +403,9 @@ dimensions f xs =
       (f t) ++ " " ++ (f r) ++ " " ++ (f b) ++ " " ++ (f l)
 
 
-{-| color' -}
-color' : Color -> String
-color' c =
+{-| color_ -}
+color_ : Color -> String
+color_ c =
   let
     { red, green, blue, alpha } =
       toRgb c
@@ -549,7 +549,7 @@ linearGradient : number -> List Color -> String
 linearGradient degrees colors =
   let
     colorString =
-      String.join "," (List.map color' colors)
+      String.join "," (List.map color_ colors)
 
     degString =
       (deg degrees) ++ ", "
@@ -562,7 +562,7 @@ radialGradient : List Color -> String
 radialGradient colors =
   let
     colorString =
-      String.join "," (List.map color' colors)
+      String.join "," (List.map color_ colors)
   in
     "radial-gradient( " ++ colorString ++ " )"
 
@@ -726,7 +726,7 @@ background b =
     value =
       prefixSet b
 
-    value' =
+    value_ =
       if needsPrefix then
         { value
           | ms = "-ms-" ++ b
@@ -737,7 +737,7 @@ background b =
       else
         value
   in
-    ( "background", prefixValue value' )
+    ( "background", prefixValue value_ )
 
 
 {-| background-color -}
@@ -917,7 +917,7 @@ cursor c =
     value =
       prefixSet c
 
-    value' =
+    value_ =
       if c == "grab" then
         { value | webkit = "-webkit-grab" }
       else if c == "zoom-in" then
@@ -927,7 +927,7 @@ cursor c =
       else
         value
   in
-    ( "cursor", prefixValue value' )
+    ( "cursor", prefixValue value_ )
 
 
 
@@ -981,7 +981,7 @@ display d =
     value =
       prefixSet d
 
-    value' =
+    value_ =
       if d == "flex" then
         { value
           | webkit = "-webkit-flex"
@@ -995,7 +995,7 @@ display d =
       else
         value
   in
-    ( "display", prefixValue value' )
+    ( "display", prefixValue value_ )
 
 
 
@@ -1048,7 +1048,7 @@ justifyContent j =
     value =
       prefixSet j
 
-    value' =
+    value_ =
       if j == "flex-start" then
         { value | ms = "start" }
       else if j == "flex-end" then
@@ -1065,7 +1065,7 @@ justifyContent j =
         | ms = "-ms-flex-pack"
         , webkit = "-webkit-justify-content"
       }
-      <| prefixValue value'
+      <| prefixValue value_
 
 
 {-| align-items -}
@@ -1078,7 +1078,7 @@ alignItems a =
     value =
       prefixSet a
 
-    value' =
+    value_ =
       if a == "flex-start" then
         { value | ms = "start" }
       else if a == "flex-end" then
@@ -1091,7 +1091,7 @@ alignItems a =
         | ms = "-ms-flex-align"
         , webkit = "-webkit-align-items"
       }
-      <| prefixValue value'
+      <| prefixValue value_
 
 
 {-| align-content -}
@@ -1104,7 +1104,7 @@ alignContent a =
     value =
       prefixSet a
 
-    value' =
+    value_ =
       if a == "flex-start" then
         { value | ms = "start" }
       else if a == "flex-end" then
@@ -1121,7 +1121,7 @@ alignContent a =
         | ms = "-ms-flex-line-pack"
         , webkit = "-webkit-flex-start"
       }
-      <| prefixValue value'
+      <| prefixValue value_
 
 
 {-| order -}
@@ -1194,7 +1194,7 @@ alignSelf a =
     value =
       prefixSet a
 
-    value' =
+    value_ =
       if a == "flex-start" then
         { value | ms = "start" }
       else if a == "flex-end" then
@@ -1207,7 +1207,7 @@ alignSelf a =
         | ms = "-ms-flex-item-align"
         , webkit = "-webkit-align-self"
       }
-      <| prefixValue value'
+      <| prefixValue value_
 
 
 {-| flex -}
